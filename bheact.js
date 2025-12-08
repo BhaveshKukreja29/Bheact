@@ -21,12 +21,35 @@ const ReactElement = function(type, key, ref, self, source, owner, props) {
     type: type,
     key: key,
     ref: ref,
-    props: props,
-
-    // Record the component responsible for creating this element.
+    props: props, // all the key values we define in our jsx attr like title, alt text, etc. 
+                  // it also has children, which can contain an array of elements
+                  // that's why, elements are also trees
+    // Record the component responsible for creating this element. (so basically parent?)
     _owner: owner,
   };
 */
 
 const container = document.getElementById("root")
-ReactDOM.render(element, container)
+
+// now we replace this. 
+// ReactDOM.render(element, container)
+// .render() is where react changes the DOM, so let's do that manually 
+
+// simple assignment
+const node = document.createElement(element.type)
+node["title"] = element.title // i will need to automate this somehow later
+
+// now we need to create DOM nodes for the children and set them into parent node
+const text = document.createTextNode("") // spent time reading bout this/innerText/innerHTML
+text["nodeValue"] = element.props.children
+
+node.appendChild(text)
+container.appendChild(node)
+
+
+
+
+
+
+
+
