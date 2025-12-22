@@ -1,10 +1,9 @@
-// now we restart after step 0 is done. this time we will actually implement the functions. 
-// we will first build our own version of createElemetnt. 
-const element = (
-  <div id="foo">
-    <a>bar</a>
-    <b />
-  </div>
-)
+// convert JSX to JS
+const element = React.createElement(
+  "div",
+  { id: "foo" },
+  React.createElement("a", null, "bar"),
+  React.createElement("b"),
+) // now the only thing that our function needs to do is create this element
 const container = document.getElementById("root")
 ReactDOM.render(element, container)
